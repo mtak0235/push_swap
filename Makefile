@@ -6,7 +6,7 @@
 #    By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 14:37:13 by mtak              #+#    #+#              #
-#    Updated: 2021/05/18 15:39:08 by mtak             ###   ########.fr        #
+#    Updated: 2021/05/19 13:19:20 by mtak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,12 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 
 LIBFT	= libft.a
 
-LIB = -L./libft
+LIB = -L./libft -lft
+
+all: $(NAME)
 
 $(NAME) : $(OBJ) $(LIBFT)
-	gcc -o $(NAME) $(OBJ) $(HEADER) $(CFLAG) $(LIB)
+	gcc -o $(NAME) $(OBJ)  $(HEADER) $(CFLAG) $(LIB)
 
 $(LIBFT):
 	$(MAKE) -C libft
