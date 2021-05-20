@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtak <mtak@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 17:01:31 by mtak              #+#    #+#             */
-/*   Updated: 2021/01/12 07:45:21 by mtak             ###   ########.fr       */
+/*   Updated: 2021/05/20 15:32:52 by mtak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int		ft_atoi(const char *str)
 		num = num + *str - 48;
 		str++;
 	}
-	if (num > LLONG_MAX - 1 && sign == 1)
+	if (num > INT_MAX - 1 && sign == 1)
 		return (-1);
-	if (num > LLONG_MAX && sign == -1)
+	if (num > INT_MAX && sign == -1)
 		return (0);
 	return (sign * num);
 }
