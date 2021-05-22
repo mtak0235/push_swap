@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pvandamm <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 16:36:56 by pvandamm          #+#    #+#             */
-/*   Updated: 2018/12/01 16:37:36 by pvandamm         ###   ########.fr       */
+/*   Updated: 2021/05/22 07:56:35 by mtak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ int		ft_count_arg(const char *format)
 int		ft_printf(const char *format, ...)
 {
 	int		nb_print;
-	int		i;
 	va_list	ap;
 	t_flags	*flags;
 
-	i = ft_count_arg(format);
+ft_count_arg(format);
 	va_start(ap, format);
 	if (!(flags = (t_flags *)malloc(sizeof(t_flags) * ft_count_arg(format))))
 		return (0);

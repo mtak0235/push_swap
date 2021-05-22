@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_s.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pvandamm <pvandamm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 18:29:38 by pvandamm          #+#    #+#             */
-/*   Updated: 2018/11/30 18:49:37 by pvandamm         ###   ########.fr       */
+/*   Updated: 2021/05/22 07:57:32 by mtak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ int	split(int i, int length, t_flags flags, char *s)
 int	print_s(va_list ap, t_flags flags)
 {
 	int		length;
-	int		tmp;
+
 	int		i;
 	char	*s;
-
-	tmp = flags.precision;
 	s = va_arg(ap, char *);
 	if (!s)
 		s = "(null)";
