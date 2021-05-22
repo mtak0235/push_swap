@@ -6,13 +6,13 @@
 /*   By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 17:01:31 by mtak              #+#    #+#             */
-/*   Updated: 2021/05/20 15:32:52 by mtak             ###   ########.fr       */
+/*   Updated: 2021/05/22 13:56:12 by mtak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+int		ft_atoi(char *str)
 {
 	int		sign;
 	size_t	num;

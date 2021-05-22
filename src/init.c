@@ -6,20 +6,11 @@
 /*   By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:32:03 by mtak              #+#    #+#             */
-/*   Updated: 2021/05/20 18:42:10 by mtak             ###   ########.fr       */
+/*   Updated: 2021/05/22 21:22:51 by mtak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../include/push_swap.h"
-
-/* int	is_av_valid(int i, t_stack *list)
-{
-	t_node *node;
-
-	node = 
-	
-} */
-
 
 
 int	init_stack(t_box *box, char **av, int len_list)
@@ -35,34 +26,28 @@ int	init_stack(t_box *box, char **av, int len_list)
 	box->A->top = NULL;
 	box->B->bottom = NULL;
 	box->B->top = NULL;
-	i = 0;
-	while (i < len_list)
+	i = 1;
+	while (i <= len_list)
 	{
-		if (!is_num(&av[i]))
+		if (!is_num(av[i]))
 			return (EXIT_FAILED);
-		node->data = ft_atoi(av[i + 1]);
-		printf("데이터 순서: %d\n", node->data);
-		add_node(box->A, i, node);
-		i++;
-	}
-	i = 0;
-	while (i< len_list)
-	{
-		node->data = 0;
-		add_node(box->B, i, node);
+		node->data = ft_atoi(av[i]);
+		if (!add_node(box->A, i - 1, node))
+			return (EXIT_FAILED);
 		i++;
 	}
 	box->A->top = box->A->bottom->next;
-	box->B->top = box->B->bottom->next;
+	pb(box->A, box->B);
 	display_list(box->A);
+	printf("after display\n");
 	return (EXIT_SUCCESSED);
 }
 
-int init_box(t_box *box, char ** av, int len_list)
+t_box *init_box(t_box *box, char **av, int len_list)
 {
 	if (!(box = (t_box *)malloc(sizeof(t_box))))
-		return NULL;
+		return (NULL);
 	if (!init_stack(box, av, len_list))
-		return NULL;
-	return 0;
+		return (NULL);
+	return (box);
 }

@@ -6,19 +6,22 @@
 /*   By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 11:35:52 by mtak              #+#    #+#             */
-/*   Updated: 2021/05/20 18:42:33 by mtak             ###   ########.fr       */
+/*   Updated: 2021/05/22 20:46:24 by mtak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../include/push_swap.h"
 
-int is_num(char *str)
+int	is_num(char *av)
 {
-	while (*str)
+	char *str;
+
+	str = av;
+	while (*av)
 	{
-		if (!('0' < *str && *str <= '9'))
+		if (!('0' <= *av && *av <= '9'))
 			return (EXIT_FAILED);
-		str++;
+		av++;
 	}
 	return (EXIT_SUCCESSED);
 }
@@ -39,8 +42,19 @@ void display_list(t_stack *list)
 
 int	is_duplicate(t_node *element, t_stack *list)
 {
+	t_node *node;
 
-	return (EXIT_SUCCESSED);
+	node = list->bottom->next;
+	if (node->data == element->data)
+		return (EXIT_SUCCESSED);
+	node = node->next;
+	while (node != list->bottom->next)
+	{
+		if (node->data == element->data)
+			return (EXIT_SUCCESSED);
+		node = node->next;
+	}
+	return (EXIT_FAILED);
 }
 
 int add_node(t_stack *list, int position, t_node *element)
@@ -51,9 +65,9 @@ int add_node(t_stack *list, int position, t_node *element)
 
 	if (!(new_node = (t_node *)malloc(sizeof(t_node))))
 		return (EXIT_FAILED);
-	pre_node = list->bottom;
-	if (!list->cnt_idx && is_duplicate(element->data, list))
+	if (list->cnt_idx && is_duplicate(element, list))
 		return (EXIT_FAILED);
+	pre_node = list->bottom;
 	new_node->data = element->data;
 	if (list->cnt_idx == 0)
 	{

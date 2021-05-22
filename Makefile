@@ -6,16 +6,22 @@
 #    By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 14:37:13 by mtak              #+#    #+#              #
-#    Updated: 2021/05/19 13:19:20 by mtak             ###   ########.fr        #
+#    Updated: 2021/05/22 20:51:58 by mtak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-CFLAG	= #-Wall -Wextra -Werror 
+CFLAG	= -g#-Wall -Wextra -Werror 
 HEADER	= -I./include
 
 SRC_NAME = main.c\
+			action_p.c\
+			action_r.c\
+			action_rr.c\
+			action_s.c\
+			init.c\
+			util.c
 
 SRC_PATH = ./src
 

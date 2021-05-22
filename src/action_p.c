@@ -6,7 +6,7 @@
 /*   By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:34:16 by mtak              #+#    #+#             */
-/*   Updated: 2021/05/20 18:06:12 by mtak             ###   ########.fr       */
+/*   Updated: 2021/05/22 21:40:00 by mtak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ void pb(t_stack *list_A, t_stack *list_B)
 	list_A->top->prev = list_A->bottom;
 	list_A->bottom->next = list_A->top->next;
 	list_A->top = tmp->next;
+
+	if (!list_B->cnt_idx)
+	{
+		list_B->cnt_idx = 1;
+		list_B->top = tmp;
+		list_B->bottom = tmp;
+	}
 
 	list_B->top->prev = tmp;
 	list_B->bottom->next = tmp;
