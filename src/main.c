@@ -6,7 +6,7 @@
 /*   By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 13:20:04 by mtak              #+#    #+#             */
-/*   Updated: 2021/05/22 22:35:13 by mtak             ###   ########.fr       */
+/*   Updated: 2021/05/23 11:31:03 by mtak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,10 @@ void quick_sort(int *arr, int start, int end)
 	quick_sort(arr, start, j - 1);
 	quick_sort(arr, j + 1, end);
 }
-void	find_pivot(t_stack *list, int size)
+
+int *put_data_arr(int *arr, t_stack *list)
 {
-	/* 정렬을 한 다음에 "turn"변수에 1등부터 꼴등까지 붙이고,  3을 나눠서 임시피 2개 정한다.
-	즉 2임시피봇의 "turn"을   pivot_small, pivot_big 에 저장한다.
-	*/
 	t_node *node;
-	int *arr;
 	int i;
 
 	node = list->top;
@@ -71,7 +68,14 @@ void	find_pivot(t_stack *list, int size)
 		arr[i++] = node->data;
 		node = node->next;
 	}
-	quick_sort(arr, 0, size - 1);
+	reutrn (arr);
+}
+
+void compare_list_arr_fill_turn(int *arr, t_stack *list, int size)
+{
+	t_node *node;
+	int i;
+
 	node = list->top;
 	while (1)
 	{
@@ -85,7 +89,22 @@ void	find_pivot(t_stack *list, int size)
 		node = node->next;
 		if (node != list->top)
 			break ;
-	}
+	}	
+}
+
+void	find_pivot(t_stack *list, int size)
+{
+	/* 정렬을 한 다음에 "turn"변수에 1등부터 꼴등까지 붙이고,  3을 나눠서 임시피 2개 정한다.
+	즉 2임시피봇의 "turn"을   pivot_small, pivot_big 에 저장한다.
+	*/
+	t_node *node;
+	int *arr;
+	int i;
+
+	arr = put_data_arr(arr, list);
+	quick_sort(arr, 0, size - 1);
+	compare_list_arr_fill_turn(arr, list, size);
+	free(arr);
 }
 void	push_swap(t_box *box)
 {
