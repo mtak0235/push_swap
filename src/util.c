@@ -6,7 +6,7 @@
 /*   By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 11:35:52 by mtak              #+#    #+#             */
-/*   Updated: 2021/05/22 20:46:24 by mtak             ###   ########.fr       */
+/*   Updated: 2021/05/23 16:55:33 by mtak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	is_num(char *av)
 	char *str;
 
 	str = av;
+	if (*av == '-')
+		av++;
 	while (*av)
 	{
 		if (!('0' <= *av && *av <= '9'))
@@ -57,16 +59,16 @@ int	is_duplicate(t_node *element, t_stack *list)
 	return (EXIT_FAILED);
 }
 
-int add_node(t_stack *list, int position, t_node *element)
+t_stack *add_node(t_stack *list, int position, t_node *element)
 {
 	t_node *new_node;
 	t_node *pre_node;
 	int i;
 
 	if (!(new_node = (t_node *)malloc(sizeof(t_node))))
-		return (EXIT_FAILED);
+		return (NULL);
 	if (list->cnt_idx && is_duplicate(element, list))
-		return (EXIT_FAILED);
+		return (NULL);
 	pre_node = list->bottom;
 	new_node->data = element->data;
 	if (list->cnt_idx == 0)
@@ -88,5 +90,5 @@ int add_node(t_stack *list, int position, t_node *element)
 			list->bottom = new_node;
 	}
 	list->cnt_idx++;
-	return (EXIT_SUCCESSED);
+	return (list);
 }

@@ -6,7 +6,7 @@
 #    By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 14:37:13 by mtak              #+#    #+#              #
-#    Updated: 2021/05/22 20:51:58 by mtak             ###   ########.fr        #
+#    Updated: 2021/05/23 16:09:02 by mtak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ SRC_NAME = main.c\
 			action_rr.c\
 			action_s.c\
 			init.c\
-			util.c
+			util.c\
+			push_swap.c\
+			find_pivot.c
 
 SRC_PATH = ./src
 

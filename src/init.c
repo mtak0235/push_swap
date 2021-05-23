@@ -6,7 +6,7 @@
 /*   By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:32:03 by mtak              #+#    #+#             */
-/*   Updated: 2021/05/22 21:22:51 by mtak             ###   ########.fr       */
+/*   Updated: 2021/05/23 19:31:39 by mtak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,11 @@ int	init_stack(t_box *box, char **av, int len_list)
 		if (!is_num(av[i]))
 			return (EXIT_FAILED);
 		node->data = ft_atoi(av[i]);
-		if (!add_node(box->A, i - 1, node))
+		if (!(box->A = add_node(box->A, i - 1, node)))
 			return (EXIT_FAILED);
 		i++;
 	}
 	box->A->top = box->A->bottom->next;
-	pb(box->A, box->B);
-	display_list(box->A);
-	printf("after display\n");
 	return (EXIT_SUCCESSED);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:34:16 by mtak              #+#    #+#             */
-/*   Updated: 2021/05/22 21:40:00 by mtak             ###   ########.fr       */
+/*   Updated: 2021/05/23 20:03:33 by mtak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ void pa(t_stack *list_B, t_stack *list_A)
 	tmp->prev = list_A->bottom;
 	tmp->next = list_A->top;
 	list_A->top = tmp;
+	printf("------pa\n");
+	display_list(list_A);
+	printf("=======list B\n");
+	display_list(list_B);
 }
 
 void pb(t_stack *list_A, t_stack *list_B)
@@ -49,4 +53,8 @@ void pb(t_stack *list_A, t_stack *list_B)
 	tmp->prev = list_B->bottom;
 	tmp->next = list_B->top;
 	list_B->top = tmp;
+	printf("-------pb\n");
+	display_list(list_A);
+	printf("=======list B\n");
+	display_list(list_B);
 }
