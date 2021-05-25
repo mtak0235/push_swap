@@ -5,90 +5,84 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 11:35:52 by mtak              #+#    #+#             */
-/*   Updated: 2021/05/23 16:55:33 by mtak             ###   ########.fr       */
+/*   Created: 2021/05/24 13:39:44 by mtak              #+#    #+#             */
+/*   Updated: 2021/05/24 14:15:35 by mtak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/push_swap.h"
+#include "push_swap.h"
 
-int	is_num(char *av)
+void		ft_memdel(void **ap)
 {
-	char *str;
-
-	str = av;
-	if (*av == '-')
-		av++;
-	while (*av)
+	if (ap && *ap)
 	{
-		if (!('0' <= *av && *av <= '9'))
-			return (EXIT_FAILED);
-		av++;
-	}
-	return (EXIT_SUCCESSED);
-}
-
-void display_list(t_stack *list)
-{
-	t_node *node;
-
-	node = list->top;
-	printf("%d\n", node->data);
-	node = node->next;
-	while (node != list->top)
-	{
-		printf("%d\n", node->data);
-		node = node->next;
+		free(*ap);
+		*ap = NULL;
 	}
 }
 
-int	is_duplicate(t_node *element, t_stack *list)
+void		ft_putstr_fd(char const *s, int fd)
 {
-	t_node *node;
-
-	node = list->bottom->next;
-	if (node->data == element->data)
-		return (EXIT_SUCCESSED);
-	node = node->next;
-	while (node != list->bottom->next)
-	{
-		if (node->data == element->data)
-			return (EXIT_SUCCESSED);
-		node = node->next;
-	}
-	return (EXIT_FAILED);
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
 }
 
-t_stack *add_node(t_stack *list, int position, t_node *element)
+void		sort_int_tab_des(int *tab, unsigned int size)
 {
-	t_node *new_node;
-	t_node *pre_node;
-	int i;
+	unsigned int	i;
+	int				tmp;
 
-	if (!(new_node = (t_node *)malloc(sizeof(t_node))))
+	i = 0;
+	size--;
+	while (i < size)
+	{
+		if (tab[i] < tab[i + 1])
+		{
+			tmp = tab[i];
+			tab[i] = tab[i + 1];
+			tab[i + 1] = tmp;
+			i = -1;
+		}
+		i++;
+	}
+}
+
+void		ft_lstadd_end(t_list **alst, t_list *new)
+{
+	t_list	*elem;
+
+	elem = *alst;
+	while (elem->next)
+		elem = elem->next;
+	elem->next = new;
+	return ;
+}
+
+t_list		*ft_lstnew_str(char *content)
+{
+	t_list	*tmp;
+	int		i;
+	char	*arr;
+
+	if (!(tmp = (t_list *)malloc(sizeof(t_list))))
 		return (NULL);
-	if (list->cnt_idx && is_duplicate(element, list))
-		return (NULL);
-	pre_node = list->bottom;
-	new_node->data = element->data;
-	if (list->cnt_idx == 0)
+	if (content == NULL)
 	{
-		new_node->next = new_node;
-		new_node->prev = new_node;
-		list->bottom = new_node;
+		tmp->content = NULL;
+		tmp->content_size = 0;
+		tmp->next = NULL;
+		return (tmp);
 	}
-	else
+	arr = malloc(sizeof(char) * ft_strlen(content) + 1);
+	i = 0;
+	while (content[i])
 	{
-		i = -1;
-		while (++i < position)
-			pre_node = pre_node->next;
-		new_node->next = pre_node->next;
-		new_node->prev = pre_node;
-		pre_node->next = new_node;
-		new_node->next->prev = new_node;
-		if (position == list->cnt_idx)
-			list->bottom = new_node;
+		arr[i] = content[i];
+		i++;
 	}
-	list->cnt_idx++;
-	return (list);
+	arr[i] = '\0';
+	tmp->content = (void *)arr;
+	tmp->next = NULL;
+	return (tmp);
 }

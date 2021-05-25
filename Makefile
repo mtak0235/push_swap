@@ -5,25 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mtak <mtak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/18 14:37:13 by mtak              #+#    #+#              #
-#    Updated: 2021/05/23 16:09:02 by mtak             ###   ########.fr        #
+#    Created: 2021/05/24 13:32:59 by mtak              #+#    #+#              #
+#    Updated: 2021/05/24 14:24:30 by mtak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-CFLAG	= -g#-Wall -Wextra -Werror 
-HEADER	= -I./include
+CFLAG	= -g -Wall -Wextra -Werror 
 
-SRC_NAME = main.c\
-			action_p.c\
-			action_r.c\
-			action_rr.c\
-			action_s.c\
-			init.c\
-			util.c\
-			push_swap.c\
-			find_pivot.c
+SRC_NAME =  main_ps.c get_median.c solver.c a_functions.c b_functions.c \
+			build.c run_commands.c parse_nb_from_str.c\
+			util.c util2.c util3.c
 
 SRC_PATH = ./src
 
@@ -32,26 +25,17 @@ OBJ_PATH = ./obj
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	mkdir $(OBJ_PATH) 2> /dev/null || true
-	gcc $(CFLAG) $(HEADER) -o $@ -c $<
-
-LIBFT	= libft.a
-
-LIB = -L./libft -lft
+	gcc $(CFLAG) -o $@ -c $<
 
 all: $(NAME)
 
-$(NAME) : $(OBJ) $(LIBFT)
-	gcc -o $(NAME) $(OBJ)  $(HEADER) $(CFLAG) $(LIB)
-
-$(LIBFT):
-	$(MAKE) -C libft
+$(NAME) : $(OBJ)
+	gcc -o $(NAME) $(OBJ) $(CFLAG)
 
 clean:
-	$(MAKE) -C libft clean
 	rm -rf $(OBJ_PATH)
 
-fclean:
-	$(MAKE) -C libft fclean
+fclean: clean
 	rm -rf $(NAME)
 
 re:	fclean all
